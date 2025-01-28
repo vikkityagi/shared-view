@@ -1,0 +1,19 @@
+<div class="container">
+    <form [formGroup]="formGroup2" (ngSubmit)="onSubmit()">
+        <div class="card ml-40 mt-2 w-50">
+            <div class="card-header">Form2</div>
+            <div class="card-body">
+                <app-comp1 (sendFormGroup)="setForm2($event)">
+                    <div class="form-group mb-3">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" class="form-control" formControlName="address" />
+                    </div>
+                    <div class="card-footer">
+                        <input type="submit" class="btn btn-primary w-100" value="Submit" (disabled)="this.formGroup2.invalid"/>
+                    </div>
+                </app-comp1>
+                
+            </div>
+        </div>
+    </form>
+</div>
