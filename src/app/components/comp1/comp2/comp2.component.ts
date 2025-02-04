@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
@@ -6,27 +6,25 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
   templateUrl: './comp2.component.html',
   styleUrls: ['./comp2.component.css']
 })
-export class Comp2Component {
+export class Comp2Component implements OnInit {
+  receivedForm: any = FormGroup;
+  // formGroup2: any = FormGroup;
 
-    formGroup2: any = FormGroup;
+  constructor(private fb:FormBuilder,private cdRef: ChangeDetectorRef){
+      
+  }
 
-    constructor(private fb:FormBuilder){
-      this.formGroup2 = this.fb.group({})
-    }
+  ngOnInit(): void {
+    this.receivedForm = this.fb.group({
+      address: ['']
+    })
+  }
+  
 
-    setForm2(form: FormGroup){
-      this.formGroup2 = form;
-
-      if (!this.formGroup2.contains('address')) {
-        this.formGroup2.addControl('address', this.fb.control(''));
-      }
-
-      this.formGroup2.updateValueAndValidity();
-
-    }
+    
 
   onSubmit(){
-    console.log('Form Submitted:', this.formGroup2.value);
+    console.log('Form Submitted:', this.receivedForm.value);
   }
 
 }

@@ -8,27 +8,22 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class Comp1Component implements OnInit {
 
-  formGroup1: any =  FormGroup;
-  @Output() sendFormGroup = new EventEmitter<any>();
+  @Input() formGroup1: any =  FormGroup;
+  
 
   constructor(private fb: FormBuilder){
+    
 
   }
   ngOnInit(): void {
-    this.init();
-
-    this.sendFormGroup.emit(this.formGroup1);
-
+    // Add form fields to the parent form
+    this.formGroup1.addControl('username', this.fb.control(''));
+    this.formGroup1.addControl('email', this.fb.control(''));
   }
 
   
 
-  init(){
-      this.formGroup1 = this.fb.group({
-        username:[''],
-        email: ['']
-      })
-  }
+ 
 
 
 }

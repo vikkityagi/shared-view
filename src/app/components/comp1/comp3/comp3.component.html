@@ -1,1 +1,13 @@
-<p>comp3 works!</p>
+<div class="container">
+    <div class="card">
+        <div class="card-header">Form3</div>
+        <div class="card-body">
+            <app-comp1 [formGroup1]="receivedForm"></app-comp1>
+            <form [formGroup]="receivedForm">
+                <label>Mobile NO</label>
+                <input type="text" formControlName="mobile_no" class="form-control"/>
+            </form>
+            {{this.receivedForm.value | json}}
+        </div>
+    </div>
+    </div>
